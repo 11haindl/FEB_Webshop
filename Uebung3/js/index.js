@@ -1,4 +1,4 @@
-
+// Test Accordion:
 let accordionItem = new AccordionItem("item1", "#accordionExample");
 accordionItem.createAccordionItem();
 
