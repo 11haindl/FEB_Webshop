@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-        url: "http://localhost/BEB_Webshop/HAINDL_STUPPACHER_BE_Uebung3/product_kataloger/katalogIndex.php?action=listTypes",
+        url: "http://localhost/MusterloesungComposerUebung3/index.php?action=listTypes",
         method: "GET",
     }).done(function (response) {
         for (let item of response){
