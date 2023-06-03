@@ -33,14 +33,18 @@ class AccordionBody {
         let datagrepper = new DataGrepper();
         let promise = datagrepper.getProductsByType(this.url);
         promise.done((response) => {
-            console.log(response);
             let products = response.products;
-            let productsString = "";
+            let productsArray = [];
             for(let product of Object.values(products)){
-                productsString += product.name + "<br>";
+                productsArray.push(product.name);
             }
-            // Funktion für display Products
-            appendToElement.html(productsString);
+
+            //function for displaying products
+            for(let productName of Object.values(productsArray)){
+                let displayProducts = new DisplayProducts(productName);
+                let itemToHTMLElement = displayProducts.createProductForm();
+                appendToElement.html(itemToHTMLElement);
+            }
         });
     }
 }
