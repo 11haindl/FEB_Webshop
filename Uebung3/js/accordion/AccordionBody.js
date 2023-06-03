@@ -6,8 +6,9 @@ class AccordionBody {
      * constructor:
      * @param parentId - id of the AccordionItem to which the body belongs
      */
-    constructor(parentId) {
+    constructor(parentId, url) {
         this.parentId = parentId
+        this.url = url;
     }
 
     /**
@@ -22,16 +23,25 @@ class AccordionBody {
         let lorem = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
 
         let $collapse = $("<div>", {"id": "collapse-" + this.parentId, "class": "accordion-collapse collapse", "aria-labelledby": headerId, "data-bs-parent": "#accordionExample"});
-        let $accordionBody = $("<div>", {"class": "accordion-body"})
-        $accordionBody.html("<b>Here will be some Cards Displayed</b></br>" + lorem)
+        let $accordionBody = $("<div>", {"class": "accordion-body"});
+        let $container = $("<div>", {"class": "container"})
+        this.appendProducts($container);
+        $accordionBody.append($container);
         $collapse.append($accordionBody)
         $("#" + this.parentId).append($collapse);
-        /*append(`
-        <div id="collapse" class="accordion-collapse collapse" aria-labelledby="${headerId}" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                Here will be some Cards for the products later
-            </div>
-        </div>
-        `)*/
+    }
+
+    appendProducts(appendToElement){
+        let datagrepper = new DataGrepper();
+        let promise = datagrepper.getProductsByType(this.url);
+        promise.done((response) => {
+            console.log(response);
+            let products = response.products;
+            let productsString = "";
+            for(let product of Object.values(products)){
+                productsString += product.name + "<br>";
+            }
+            appendToElement.html(productsString);
+        });
     }
 }

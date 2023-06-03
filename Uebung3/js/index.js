@@ -4,10 +4,8 @@ $(document).ready(function(){
         method: "GET",
     }).done(function (response) {
         for (let item of response){
-            let productTypeWithoutWhiteSpace = item.productType;
-            productTypeWithoutWhiteSpace = productTypeWithoutWhiteSpace.replace(/\s+/g, '-').toLowerCase();
-            console.log(productTypeWithoutWhiteSpace)
-            let accordionItem = new AccordionItem(productTypeWithoutWhiteSpace, "#accordionExample");
+            console.log(response);
+            let accordionItem = new AccordionItem(item.productType, "#accordionExample", item.url);
             accordionItem.createAccordionItem();
         }
     }).fail(function (error) {
@@ -17,6 +15,7 @@ $(document).ready(function(){
     });
 });
 
-
+let dataGrepper = new DataGrepper();
+dataGrepper.getProductsByType();
 let card = new Card("test-card", "headingThree", "12")
 card.createCard()

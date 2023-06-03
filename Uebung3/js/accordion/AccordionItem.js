@@ -7,11 +7,13 @@ class AccordionItem {
       * @param {string} id - id of AccordionItem HTML-Element
       * @param {string} parentId - id of the Accordion to which the item belongs
      * */
-     constructor(id, parentId) {
-          this.id = id
-          this.parentId = parentId
+     constructor(name, parentId, url) {
+          this.name = name;
+          this.id = this.buildId();
+          this.parentId = parentId;
+          this.url = url;
           this.header = new AccordionHeader(this.id)
-          this.body = new AccordionBody(this.id)
+          this.body = new AccordionBody(this.id, this.url)
      }
 
      /**
@@ -24,7 +26,14 @@ class AccordionItem {
      createAccordionItem(){
           let $accordionItem = $("<div>", {"id": this.id, "class": "accordion-item"});
           $(this.parentId).append($accordionItem);
-          this.header.createHeader("Header for " + this.id)
+          this.header.createHeader("Header for " + this.name)
           this.body.createBody(this.header.id)
+
+     }
+
+     buildId(){
+          let productTypeWithoutWhiteSpace = this.name;
+          productTypeWithoutWhiteSpace = productTypeWithoutWhiteSpace.replace(/\s+/g, '-').toLowerCase();
+          return productTypeWithoutWhiteSpace;
      }
 }
