@@ -41,9 +41,10 @@ class AccordionBody {
 
             //function for displaying products
             for(let productName of Object.values(productsArray)){
+                console.log(productName);
                 let displayProducts = new DisplayProducts(productName);
                 let itemToHTMLElement = displayProducts.createProductForm();
-                appendToElement.html(itemToHTMLElement);
+                appendToElement.append(itemToHTMLElement);
             }
         });
     }

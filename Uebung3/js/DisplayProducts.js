@@ -9,7 +9,6 @@ class DisplayProducts {
         $newForm.append($label);
         let $quantity = $("<input>", {"class": "form-control", "type": "number", "min": "0"});
         $newForm.append($quantity);
-        console.log($newForm);
         return $newForm;
     }
 }

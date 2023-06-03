@@ -4,7 +4,6 @@ $(document).ready(function(){
         method: "GET",
     }).done(function (response) {
         for (let item of response){
-            console.log(response);
             let accordionItem = new AccordionItem(item.productType, "#productsAccordion", item.url);
             accordionItem.createAccordionItem();
         }
