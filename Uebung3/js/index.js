@@ -5,7 +5,7 @@ $(document).ready(function(){
     }).done(function (response) {
         for (let item of response){
             console.log(response);
-            let accordionItem = new AccordionItem(item.productType, "#accordionExample", item.url);
+            let accordionItem = new AccordionItem(item.productType, "#productsAccordion", item.url);
             accordionItem.createAccordionItem();
         }
     }).fail(function (error) {
@@ -15,7 +15,3 @@ $(document).ready(function(){
     });
 });
 
-let dataGrepper = new DataGrepper();
-dataGrepper.getProductsByType();
-let card = new Card("test-card", "headingThree", "12")
-card.createCard()

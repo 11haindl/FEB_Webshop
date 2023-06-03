@@ -20,9 +20,7 @@ class AccordionBody {
      * @param headerId - id of the accordionItems Header that the body belongs to
      */
     createBody(headerId){
-        let lorem = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-
-        let $collapse = $("<div>", {"id": "collapse-" + this.parentId, "class": "accordion-collapse collapse", "aria-labelledby": headerId, "data-bs-parent": "#accordionExample"});
+        let $collapse = $("<div>", {"id": "collapse-" + this.parentId, "class": "accordion-collapse collapse", "aria-labelledby": headerId, "data-bs-parent": "#productsAccordion"});
         let $accordionBody = $("<div>", {"class": "accordion-body"});
         let $container = $("<div>", {"class": "container"})
         this.appendProducts($container);
@@ -41,6 +39,7 @@ class AccordionBody {
             for(let product of Object.values(products)){
                 productsString += product.name + "<br>";
             }
+            // Funktion für display Products
             appendToElement.html(productsString);
         });
     }

@@ -26,9 +26,8 @@ class AccordionItem {
      createAccordionItem(){
           let $accordionItem = $("<div>", {"id": this.id, "class": "accordion-item"});
           $(this.parentId).append($accordionItem);
-          this.header.createHeader("Header for " + this.name)
-          this.body.createBody(this.header.id)
-
+          this.header.createHeader(this.name.toUpperCase());
+          this.body.createBody(this.header.id);
      }
 
      buildId(){
